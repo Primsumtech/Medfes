@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uMTWb/UpKgrBUUgepoN+cq7rjMLFFYE4ZTj0SDskGXTFnxiOcukP9TVSuq65S0XUYxmneRXyFUaxb4g4D8voFg==",
+  "dgSpecHash": "KrX7GVmuwKHZOthhuqM3ddgDzANT9+Rj7mdJItojGIiL6FKNo0w8gyU9QsPoRcGYBcknuQN9L5X4gfFX9X1P8w==",
   "success": true,
   "projectFilePath": "C:\\Users\\win10\\source\\repos\\Medfes\\MedfeesSolution\\MedfeesSolution\\MedfeesSolution.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "C:\\Users\\win10\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\win10\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\win10\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
+    "C:\\Users\\win10\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\win10\\.nuget\\packages\\npgsql\\6.0.5\\npgsql.6.0.5.nupkg.sha512",
     "C:\\Users\\win10\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.5\\npgsql.entityframeworkcore.postgresql.6.0.5.nupkg.sha512",
     "C:\\Users\\win10\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql.design\\1.1.0\\npgsql.entityframeworkcore.postgresql.design.1.1.0.nupkg.sha512",
