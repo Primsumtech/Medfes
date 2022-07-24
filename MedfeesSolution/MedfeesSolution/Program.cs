@@ -3,7 +3,8 @@ using MedfeesSolution.Repository;
 using MedfeesSolution.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
-
+using MedfeesSolution.MappingConfigurations;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,12 @@ builder.Services.AddDbContext<medfesContext>(options =>{
                            sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), null);
                          });
 });
+var automapper = new MapperConfiguration(item => item.AddProfile(new MapperConfig()));
+IMapper mapper=automapper.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
 builder.Services.AddTransient<UsersInterface, UsersRepository>();
+builder.Services.AddTransient<LoginInterface,LoginRepository>();
 
 var app = builder.Build();
 

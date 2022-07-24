@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MedfeesSolution.Models;
+using MedfeesSolution.Models.DTO;
 using MedfeesSolution.Interfaces;
 
 namespace MedfeesSolution.Controllers
@@ -20,6 +21,14 @@ namespace MedfeesSolution.Controllers
         public IActionResult GetUsers()
         {
             var users = _usersInterface.GetUsers();
+            return Ok(users);
+        }
+
+
+        [HttpPost("createuser")]
+        public async Task<IActionResult> createUser(CreateEditUserDTO createEditUserDTO)
+        {
+            bool users =await _usersInterface.CreateUser(createEditUserDTO);
             return Ok(users);
         }
     }

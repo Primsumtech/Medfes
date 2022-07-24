@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MedfeesSolution.Models
+﻿namespace MedfeesSolution.Models.DTO
 {
-    public partial class User
+    public class userDTO
     {
-        public int Userid { get; set; }
+    }
+    public class CreateEditUserDTO
+    {
         public string? Firstname { get; set; }
         public string? Middlename { get; set; }
         public string? Lastname { get; set; }
@@ -16,11 +15,9 @@ namespace MedfeesSolution.Models
         public string? States { get; set; }
         public string? Country { get; set; }
         public string? Countrycode { get; set; }
-        public int? Roleid { get; set; }
-        public byte[]? Passwordhash { get; set; }
-        public byte[]? Passwordsalt { get; set; }
-        public string? Email { get; set; }
+        public int Roleid { get; set; }
+        public string? password { get; set; }
+        
 
-        public virtual Role? Role { get; set; }
     }
 }
