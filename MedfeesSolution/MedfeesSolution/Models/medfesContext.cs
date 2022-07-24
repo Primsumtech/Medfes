@@ -19,6 +19,7 @@ namespace MedfeesSolution.Models
         public virtual DbSet<Diagnosticmaster> Diagnosticmasters { get; set; } = null!;
         public virtual DbSet<Doctor> Doctors { get; set; } = null!;
         public virtual DbSet<Doctorsdesignation> Doctorsdesignations { get; set; } = null!;
+        public virtual DbSet<Errorlog> Errorlogs { get; set; } = null!;
         public virtual DbSet<Hospitaltenant> Hospitaltenants { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
@@ -154,6 +155,34 @@ namespace MedfeesSolution.Models
                 entity.Property(e => e.Isactive)
                     .HasColumnName("isactive")
                     .HasDefaultValueSql("true");
+            });
+
+            modelBuilder.Entity<Errorlog>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("errorlog");
+
+                entity.Property(e => e.Creadteddate)
+                    .HasColumnType("timestamp without time zone")
+                    .HasColumnName("creadteddate")
+                    .HasDefaultValueSql("CURRENT_DATE");
+
+                entity.Property(e => e.Errorcontroller)
+                    .HasMaxLength(300)
+                    .HasColumnName("errorcontroller");
+
+                entity.Property(e => e.Errorid)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("errorid");
+
+                entity.Property(e => e.Errormessage)
+                    .HasMaxLength(3000)
+                    .HasColumnName("errormessage");
+
+                entity.Property(e => e.Errormethodname)
+                    .HasMaxLength(300)
+                    .HasColumnName("errormethodname");
             });
 
             modelBuilder.Entity<Hospitaltenant>(entity =>
