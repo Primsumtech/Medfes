@@ -29,7 +29,7 @@ namespace MedfeesSolution.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-           }
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -159,9 +159,12 @@ namespace MedfeesSolution.Models
 
             modelBuilder.Entity<Errorlog>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Errorid)
+                    .HasName("errorlog_pkey");
 
                 entity.ToTable("errorlog");
+
+                entity.Property(e => e.Errorid).HasColumnName("errorid");
 
                 entity.Property(e => e.Creadteddate)
                     .HasColumnType("timestamp without time zone")
@@ -171,10 +174,6 @@ namespace MedfeesSolution.Models
                 entity.Property(e => e.Errorcontroller)
                     .HasMaxLength(300)
                     .HasColumnName("errorcontroller");
-
-                entity.Property(e => e.Errorid)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("errorid");
 
                 entity.Property(e => e.Errormessage)
                     .HasMaxLength(3000)

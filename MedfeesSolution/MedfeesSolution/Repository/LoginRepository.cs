@@ -9,11 +9,13 @@ namespace MedfeesSolution.Repository
     {
         private readonly medfesContext _context;
         private readonly IMapper _mapper;
-
-        public LoginRepository(medfesContext context, IMapper mapper)
+        Errorlog elog=new Errorlog();
+        public ErrorLogRepository _er;
+        public LoginRepository(medfesContext context, IMapper mapper, ErrorLogRepository er)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _er = er;
         }
 
 
@@ -40,12 +42,16 @@ namespace MedfeesSolution.Repository
                 response.username = user.Firstname + " " + user.Middlename + " " + user.Lastname;
                 response.email = user.Email;
                 response.roleid = user.Roleid;
-                response.rolename = role.Rolename;
-               return (response); 
+                response.rolename = role.Rolename;              
+                return (response); 
 
             }
             catch (Exception ex)
             {
+                elog.Errormethodname = "LoginUser";
+                elog.Creadteddate = System.DateTime.Now;
+                elog.Errormessage = ex.Message;
+                _er.ErrorLogSave(elog);
                 throw ex;
             }
 
