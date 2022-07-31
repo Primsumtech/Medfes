@@ -7,16 +7,12 @@ namespace MedfeesSolution.Models
     {
         public Role()
         {
-            Doctors = new HashSet<Doctor>();
             Users = new HashSet<User>();
-            staff = new HashSet<staff>();
         }
 
         public int Roleid { get; set; }
-        public string? Rolename { get; set; }
+        public string Rolename { get; set; }
 
-        public virtual ICollection<Doctor> Doctors { get; set; }
         public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<staff> staff { get; set; }
     }
 }
