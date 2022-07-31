@@ -16,12 +16,17 @@ namespace MedfeesSolution.Models
         {
         }
 
+        public virtual DbSet<Audit> Audits { get; set; } = null!;
+        public virtual DbSet<City> Cities { get; set; } = null!;
+        public virtual DbSet<Country> Countries { get; set; } = null!;
         public virtual DbSet<Diagnosticmaster> Diagnosticmasters { get; set; } = null!;
         public virtual DbSet<Doctor> Doctors { get; set; } = null!;
         public virtual DbSet<Doctorsdesignation> Doctorsdesignations { get; set; } = null!;
         public virtual DbSet<Errorlog> Errorlogs { get; set; } = null!;
         public virtual DbSet<Hospitaltenant> Hospitaltenants { get; set; } = null!;
+        public virtual DbSet<Patient> Patients { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<State> States { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<staff> staff { get; set; } = null!;
 
@@ -34,6 +39,52 @@ namespace MedfeesSolution.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Audit>(entity =>
+            {
+                entity.ToTable("audit");
+
+                entity.Property(e => e.Auditid)
+                    .ValueGeneratedNever()
+                    .HasColumnName("auditid");
+
+                entity.Property(e => e.Createdby).HasColumnName("createdby");
+
+                entity.Property(e => e.Createddate)
+                    .HasColumnType("timestamp without time zone")
+                    .HasColumnName("createddate");
+
+                entity.Property(e => e.Modifieddate).HasColumnType("timestamp without time zone");
+            });
+
+            modelBuilder.Entity<City>(entity =>
+            {
+                entity.ToTable("cities");
+
+                entity.Property(e => e.Cityid).HasColumnName("cityid");
+
+                entity.Property(e => e.Cityname)
+                    .HasMaxLength(300)
+                    .HasColumnName("cityname");
+
+                entity.Property(e => e.Stateid).HasColumnName("stateid");
+
+                entity.HasOne(d => d.State)
+                    .WithMany(p => p.Cities)
+                    .HasForeignKey(d => d.Stateid)
+                    .HasConstraintName("states_stateid_fkey");
+            });
+
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.ToTable("country");
+
+                entity.Property(e => e.Countryid).HasColumnName("countryid");
+
+                entity.Property(e => e.Countryname)
+                    .HasMaxLength(300)
+                    .HasColumnName("countryname");
+            });
+
             modelBuilder.Entity<Diagnosticmaster>(entity =>
             {
                 entity.HasKey(e => e.Diagnosticid)
@@ -246,6 +297,37 @@ namespace MedfeesSolution.Models
                     .HasColumnName("states");
             });
 
+            modelBuilder.Entity<Patient>(entity =>
+            {
+                entity.ToTable("patient");
+
+                entity.Property(e => e.Patientid)
+                    .ValueGeneratedNever()
+                    .HasColumnName("patientid");
+
+                entity.Property(e => e.Emailid)
+                    .HasMaxLength(100)
+                    .HasColumnName("emailid");
+
+                entity.Property(e => e.Firstname)
+                    .HasMaxLength(300)
+                    .HasColumnName("firstname");
+
+                entity.Property(e => e.Gender).HasColumnName("gender");
+
+                entity.Property(e => e.Lastname)
+                    .HasMaxLength(300)
+                    .HasColumnName("lastname");
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(100)
+                    .HasColumnName("password");
+
+                entity.Property(e => e.Phonenumber)
+                    .HasMaxLength(100)
+                    .HasColumnName("phonenumber");
+            });
+
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("roles");
@@ -255,6 +337,24 @@ namespace MedfeesSolution.Models
                 entity.Property(e => e.Rolename)
                     .HasMaxLength(300)
                     .HasColumnName("rolename");
+            });
+
+            modelBuilder.Entity<State>(entity =>
+            {
+                entity.ToTable("states");
+
+                entity.Property(e => e.Stateid).HasColumnName("stateid");
+
+                entity.Property(e => e.Countryid).HasColumnName("countryid");
+
+                entity.Property(e => e.Statename)
+                    .HasMaxLength(300)
+                    .HasColumnName("statename");
+
+                entity.HasOne(d => d.Country)
+                    .WithMany(p => p.States)
+                    .HasForeignKey(d => d.Countryid)
+                    .HasConstraintName("country_countryid_fkey");
             });
 
             modelBuilder.Entity<User>(entity =>

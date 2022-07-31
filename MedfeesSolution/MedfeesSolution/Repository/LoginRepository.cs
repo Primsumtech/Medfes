@@ -53,6 +53,7 @@ namespace MedfeesSolution.Repository
                 elog.Errormessage = ex.Message;
                 _er.ErrorLogSave(elog);
                 throw ex;
+                
             }
 
         }
