@@ -11,7 +11,7 @@ namespace MedfeesSolution.Models
         }
 
         public int Countryid { get; set; }
-        public string? Countryname { get; set; }
+        public string Countryname { get; set; }
 
         public virtual ICollection<State> States { get; set; }
     }

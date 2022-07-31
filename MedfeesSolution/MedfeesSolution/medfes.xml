@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MedfeesSolution</name>
+    </assembly>
+    <members>
+        <member name="M:MedfeesSolution.Controllers.CityController.GetCities">
+            <summary>
+            Get cities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MedfeesSolution.Controllers.CityController.GetCitiesbyStateid(System.Int32)">
+            <summary>
+            Get cities by stateid
+            </summary>
+            <param name="stateid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MedfeesSolution.Controllers.CountryController.GetCountries">
+            <summary>
+            Get countries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MedfeesSolution.Controllers.StateController.GetStates">
+            <summary>
+            Get states
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MedfeesSolution.Controllers.StateController.GetState(System.Int32)">
+            <summary>
+            Get state by countryid
+            </summary>
+            <param name="countryid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MedfeesSolution.Repository.ErrorLogRepository.ErrorLogSave(MedfeesSolution.Models.Errorlog)">
+            <summary>
+            Method for saving error log details
+            </summary>
+            <param name="elog"></param>
+        </member>
+    </members>
+</doc>

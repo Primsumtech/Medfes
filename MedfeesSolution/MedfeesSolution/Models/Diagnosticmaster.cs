@@ -5,8 +5,8 @@ namespace MedfeesSolution.Models
 {
     public partial class Diagnosticmaster
     {
-        public string Diagnosticid { get; set; } = null!;
-        public string? Diagnosticname { get; set; }
+        public string Diagnosticid { get; set; }
+        public string Diagnosticname { get; set; }
         public bool? Isactive { get; set; }
     }
 }

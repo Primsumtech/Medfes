@@ -11,10 +11,10 @@ namespace MedfeesSolution.Models
         }
 
         public int Stateid { get; set; }
-        public string? Statename { get; set; }
+        public string Statename { get; set; }
         public int? Countryid { get; set; }
 
-        public virtual Country? Country { get; set; }
+        public virtual Country Country { get; set; }
         public virtual ICollection<City> Cities { get; set; }
     }
 }

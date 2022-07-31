@@ -11,13 +11,13 @@
   "profiles": {
     "MedfeesSolution": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7030;http://localhost:5030",
+      "launchUrl": "swagger/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:7030;http://localhost:5030",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
