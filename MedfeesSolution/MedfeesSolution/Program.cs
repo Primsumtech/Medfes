@@ -28,6 +28,9 @@ IMapper mapper=automapper.CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddTransient<UsersInterface, UsersRepository>();
 builder.Services.AddTransient<LoginInterface,LoginRepository>();
+builder.Services.AddTransient<CountryInterface, CountryRepository>();
+builder.Services.AddTransient<StateInterface, StateRepository>();
+builder.Services.AddTransient<CityInterface, CityRepository>();
 builder.Services.AddTransient<ErrorLogRepository>();
 
 var app = builder.Build();
