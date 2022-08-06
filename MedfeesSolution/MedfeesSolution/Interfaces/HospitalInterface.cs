@@ -7,6 +7,7 @@ namespace MedfeesSolution.Interfaces
     {
        Task<bool> CreateHospital(HospitalDTO hospitalDTO);
 
-        
+        Task<bool> EditHospital(EditHospitalDTO edithospitalDTO);
+        Task<bool> DeleteHospital(int hospitaltenantid);
     }
 }
