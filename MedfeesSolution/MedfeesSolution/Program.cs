@@ -45,6 +45,10 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Medfes API's"));
 
+app.UseCors(x => x.AllowAnyHeader()
+      .AllowAnyMethod()
+      .AllowCredentials()
+      .SetIsOriginAllowed(origin=>true));
 
 //app.UseForwardedHeaders();
 
