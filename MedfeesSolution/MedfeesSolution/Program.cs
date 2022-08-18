@@ -32,6 +32,8 @@ builder.Services.AddTransient<CountryInterface, CountryRepository>();
 builder.Services.AddTransient<StateInterface, StateRepository>();
 builder.Services.AddTransient<CityInterface, CityRepository>();
 builder.Services.AddTransient<HospitalInterface, HospitalRepository>();
+builder.Services.AddTransient<StaffInterface, StaffRepository>();
+
 builder.Services.AddTransient<ErrorLogRepository>();
 
 var app = builder.Build();

@@ -24,10 +24,13 @@ namespace MedfeesSolution.Models
         public virtual DbSet<Errorlog> Errorlogs { get; set; }
         public virtual DbSet<Hospitallocation> Hospitallocations { get; set; }
         public virtual DbSet<Hospitaltenant> Hospitaltenants { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
+        public virtual DbSet<Privilege> Privileges { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<staff> staff { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -239,6 +242,17 @@ namespace MedfeesSolution.Models
                 entity.Property(e => e.Stateid).HasColumnName("stateid");
             });
 
+            modelBuilder.Entity<Page>(entity =>
+            {
+                entity.ToTable("pages");
+
+                entity.Property(e => e.Pageid).HasColumnName("pageid");
+
+                entity.Property(e => e.Pagename)
+                    .HasMaxLength(300)
+                    .HasColumnName("pagename");
+            });
+
             modelBuilder.Entity<Patient>(entity =>
             {
                 entity.ToTable("patient");
@@ -274,6 +288,38 @@ namespace MedfeesSolution.Models
                     .IsRequired()
                     .HasMaxLength(100)
                     .HasColumnName("phonenumber");
+            });
+
+            modelBuilder.Entity<Privilege>(entity =>
+            {
+                entity.HasKey(e => e.Priid)
+                    .HasName("privileges_pkey");
+
+                entity.ToTable("privileges");
+
+                entity.Property(e => e.Priid).HasColumnName("priid");
+
+                entity.Property(e => e.Pageid).HasColumnName("pageid");
+
+                entity.Property(e => e.Pcreate).HasColumnName("pcreate");
+
+                entity.Property(e => e.Pdelete).HasColumnName("pdelete");
+
+                entity.Property(e => e.Pedit).HasColumnName("pedit");
+
+                entity.Property(e => e.Pview).HasColumnName("pview");
+
+                entity.Property(e => e.Roleid).HasColumnName("roleid");
+
+                entity.HasOne(d => d.Page)
+                    .WithMany(p => p.Privileges)
+                    .HasForeignKey(d => d.Pageid)
+                    .HasConstraintName("pages_pageid_fkey");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Privileges)
+                    .HasForeignKey(d => d.Roleid)
+                    .HasConstraintName("roles_roleid_fkey");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -365,6 +411,105 @@ namespace MedfeesSolution.Models
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.Roleid)
                     .HasConstraintName("users_roleid_fkey");
+            });
+
+            modelBuilder.Entity<staff>(entity =>
+            {
+                entity.Property(e => e.Staffid).HasColumnName("staffid");
+
+                entity.Property(e => e.Aadharno).HasColumnName("aadharno");
+
+                entity.Property(e => e.City).HasColumnName("city");
+
+                entity.Property(e => e.Country).HasColumnName("country");
+
+                entity.Property(e => e.Createdby).HasColumnName("createdby");
+
+                entity.Property(e => e.Createdon)
+                    .HasColumnType("timestamp without time zone")
+                    .HasColumnName("createdon")
+                    .HasDefaultValueSql("CURRENT_DATE");
+
+                entity.Property(e => e.Education)
+                    .HasMaxLength(100)
+                    .HasColumnName("education");
+
+                entity.Property(e => e.Emailid)
+                    .HasMaxLength(100)
+                    .HasColumnName("emailid");
+
+                entity.Property(e => e.Emergencycontactno).HasColumnName("emergencycontactno");
+
+                entity.Property(e => e.Firstname)
+                    .HasMaxLength(300)
+                    .HasColumnName("firstname");
+
+                entity.Property(e => e.Gender)
+                    .HasMaxLength(20)
+                    .HasColumnName("gender");
+
+                entity.Property(e => e.Hospitaltenantid).HasColumnName("hospitaltenantid");
+
+                entity.Property(e => e.Isactive)
+                    .HasColumnName("isactive")
+                    .HasDefaultValueSql("true");
+
+                entity.Property(e => e.Joiningdate)
+                    .HasColumnType("timestamp without time zone")
+                    .HasColumnName("joiningdate")
+                    .HasDefaultValueSql("CURRENT_DATE");
+
+                entity.Property(e => e.Lastname)
+                    .HasMaxLength(300)
+                    .HasColumnName("lastname");
+
+                entity.Property(e => e.Licenseexpirydate)
+                    .HasColumnType("timestamp without time zone")
+                    .HasColumnName("licenseexpirydate");
+
+                entity.Property(e => e.Licenseno)
+                    .HasMaxLength(50)
+                    .HasColumnName("licenseno");
+
+                entity.Property(e => e.Mobilenumeber)
+                    .HasMaxLength(100)
+                    .HasColumnName("mobilenumeber");
+
+                entity.Property(e => e.Modifiedby).HasColumnName("modifiedby");
+
+                entity.Property(e => e.Modifiedon)
+                    .HasColumnType("timestamp without time zone")
+                    .HasColumnName("modifiedon");
+
+                entity.Property(e => e.Pancardno)
+                    .HasMaxLength(50)
+                    .HasColumnName("pancardno");
+
+                entity.Property(e => e.Passwordhash).HasColumnName("passwordhash");
+
+                entity.Property(e => e.Passwordsalt).HasColumnName("passwordsalt");
+
+                entity.Property(e => e.Pincode).HasColumnName("pincode");
+
+                entity.Property(e => e.Roleid).HasColumnName("roleid");
+
+                entity.Property(e => e.Staffuniqueid)
+                    .HasMaxLength(300)
+                    .HasColumnName("staffuniqueid");
+
+                entity.Property(e => e.State).HasColumnName("state");
+
+                entity.Property(e => e.Uploadimage).HasColumnName("uploadimage");
+
+                entity.HasOne(d => d.Hospitaltenant)
+                    .WithMany(p => p.staff)
+                    .HasForeignKey(d => d.Hospitaltenantid)
+                    .HasConstraintName("hospitaltenant_hospitaltenantid_fkey");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.staff)
+                    .HasForeignKey(d => d.Roleid)
+                    .HasConstraintName("roles_roleid_fkey");
             });
 
             modelBuilder.HasSequence("sequence_for_alpha_numeric");

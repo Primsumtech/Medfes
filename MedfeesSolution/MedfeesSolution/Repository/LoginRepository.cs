@@ -24,7 +24,7 @@ namespace MedfeesSolution.Repository
 
             try
             {
-                var user =  _context.Users.SingleOrDefault(user=>user.Email== login.loginemail);
+                var user =  _context.Users.SingleOrDefault(user=>user.Email== login.userid);
                 if (user == null)
                 {
                     return null;
@@ -35,14 +35,31 @@ namespace MedfeesSolution.Repository
                 }
                 int roleid = user.Roleid.Value;
                 var role = _context.Roles.SingleOrDefault(x => x.Roleid == roleid);
-                 
+                 var pri=_context.Privileges.Where(x=>x.Roleid==role.Roleid).ToList();
+
+                List<AcccessPages> aplist=new List<AcccessPages>();
+                foreach (var p in pri)
+                {
+                    var pg=_context.Pages.Where(x=>x.Pageid==p.Pageid);
+                    AcccessPages ap=new AcccessPages();
+                    ap.pageid=pg.Select(x=>x.Pageid).FirstOrDefault();
+                    ap.pagename=pg.Select(y=>y.Pagename).FirstOrDefault();
+                    PagePriviliges pagePriviliges=new PagePriviliges();
+                    pagePriviliges.view = p.Pview;
+                    pagePriviliges.create = p.Pcreate;
+                    pagePriviliges.update = p.Pedit;
+                    pagePriviliges.delete = p.Pdelete;
+                    ap.pagepriviliges.Add(pagePriviliges);
+                    aplist.Add(ap);
+                }
 
                  LoginResponse response =new LoginResponse();
                 response.userid = user.Userid;
                 response.username = user.Firstname + " " + user.Middlename + " " + user.Lastname;
                 response.email = user.Email;
                 response.roleid = user.Roleid;
-                response.rolename = role.Rolename;              
+                response.rolename = role.Rolename;
+                response.acccesspages = aplist;
                 return (response); 
 
             }

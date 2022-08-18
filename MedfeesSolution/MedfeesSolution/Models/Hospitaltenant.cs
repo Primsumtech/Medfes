@@ -8,6 +8,7 @@ namespace MedfeesSolution.Models
         public Hospitaltenant()
         {
             Hospitallocations = new HashSet<Hospitallocation>();
+            staff = new HashSet<staff>();
         }
 
         public int Hospitaltenantid { get; set; }
@@ -23,5 +24,6 @@ namespace MedfeesSolution.Models
         public bool? Isactive { get; set; }
 
         public virtual ICollection<Hospitallocation> Hospitallocations { get; set; }
+        public virtual ICollection<staff> staff { get; set; }
     }
 }
