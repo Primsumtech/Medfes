@@ -12,7 +12,8 @@ namespace MedfeesSolution.MappingConfigurations
         public MapperConfig()
         {
             CreateMap<CreateEditUserDTO, User>();
-            
+            CreateMap<CreateStaff, staff>();
+
         }
     }
 }
