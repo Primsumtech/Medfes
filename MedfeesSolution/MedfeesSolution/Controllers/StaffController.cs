@@ -31,5 +31,19 @@ namespace MedfeesSolution.Controllers
             bool staff =await _staffInterface.CreateStaff(createStaff);
             return Ok(staff);
         }
+
+        [HttpPost("editstaff")]
+        public async Task<IActionResult> EditStaff(EditStaff editStaff)
+        {
+            bool staff = await _staffInterface.EditStaff(editStaff);
+            return Ok(staff);
+        }
+
+        [HttpDelete("deletestaff")]
+        public async Task<IActionResult> DeleteStaff(int staffid)
+        {
+            bool staff = await _staffInterface.DeleteStaff(staffid);
+            return Ok(staff);
+        }
     }
 }

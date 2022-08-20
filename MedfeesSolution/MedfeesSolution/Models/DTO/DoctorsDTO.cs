@@ -1,9 +1,9 @@
 ﻿namespace MedfeesSolution.Models.DTO
 {
-    public class StaffDTO
+    public class DoctorsDTO
     {
     }
-    public class CreateStaff
+    public class CreateDoctor
     {
 
         public int? Hospitaltenantid { get; set; }       
@@ -15,6 +15,8 @@
         public string Gender { get; set; }
         public string Licenseno { get; set; }
         public DateTime Licenseexpirydate { get; set; }
+
+        public int Docdesigid { get; set; }
         public int? Emergencycontactno { get; set; }
         public int? Aadharno { get; set; }
         public string Pancardno { get; set; }
@@ -28,9 +30,9 @@
         //public string Uploadimage { get; set; }
     }
 
-    public class EditStaff
+    public class EditDoctor
     {
-        public int staffid { get; set; }
+        public int Doctorid { get; set; }
         public int? Hospitaltenantid { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
@@ -40,6 +42,7 @@
         public string Gender { get; set; }
         public string Licenseno { get; set; }
         public DateTime Licenseexpirydate { get; set; }
+        public int Docdesigid { get; set; }
         public int? Emergencycontactno { get; set; }
         public int? Aadharno { get; set; }
         public string Pancardno { get; set; }
