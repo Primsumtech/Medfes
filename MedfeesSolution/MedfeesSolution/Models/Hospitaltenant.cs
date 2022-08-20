@@ -7,6 +7,7 @@ namespace MedfeesSolution.Models
     {
         public Hospitaltenant()
         {
+            Doctors = new HashSet<Doctor>();
             Hospitallocations = new HashSet<Hospitallocation>();
             staff = new HashSet<staff>();
         }
@@ -23,6 +24,7 @@ namespace MedfeesSolution.Models
         public DateTime? Modifiedon { get; set; }
         public bool? Isactive { get; set; }
 
+        public virtual ICollection<Doctor> Doctors { get; set; }
         public virtual ICollection<Hospitallocation> Hospitallocations { get; set; }
         public virtual ICollection<staff> staff { get; set; }
     }

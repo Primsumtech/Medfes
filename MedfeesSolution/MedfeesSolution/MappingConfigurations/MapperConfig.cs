@@ -13,6 +13,7 @@ namespace MedfeesSolution.MappingConfigurations
         {
             CreateMap<CreateEditUserDTO, User>();
             CreateMap<CreateStaff, staff>();
+            CreateMap<CreateDoctor, Doctor>();
 
         }
     }

@@ -9,6 +9,10 @@ namespace MedfeesSolution.Interfaces
 
         Task<bool> CreateStaff(CreateStaff createStaff);
 
+        Task<bool> EditStaff(EditStaff editStaff);
+
+        Task<bool> DeleteStaff(int staffid);
+
 
 
     }
