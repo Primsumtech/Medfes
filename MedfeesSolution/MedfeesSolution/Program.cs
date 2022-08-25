@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 using MedfeesSolution.MappingConfigurations;
 using AutoMapper;
+using MedfeesSolution.DataAccess.Patient;
+using MedfeesSolution.BusinessProcess.Patient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,9 +35,12 @@ builder.Services.AddTransient<StateInterface, StateRepository>();
 builder.Services.AddTransient<CityInterface, CityRepository>();
 builder.Services.AddTransient<HospitalInterface, HospitalRepository>();
 builder.Services.AddTransient<ErrorLogRepository>();
+builder.Services.AddTransient<IPatientRepository, PatientRepository>();
+builder.Services.AddTransient<IPatientBP,PatientBP>();
+
 
 var app = builder.Build();
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{

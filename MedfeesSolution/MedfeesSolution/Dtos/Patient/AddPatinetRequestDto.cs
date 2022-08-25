@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using MedfeesSolution.Utilities.DateFormater;
+using System.Text.Json.Serialization;
 
-namespace MedfeesSolution.Models
+namespace MedfeesSolution.Dtos.Patient
 {
-    public partial class Patient
+    public class AddPatinetRequestDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string  Patientid { get; set; } 
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Mobilenumber { get; set; }
         public string Emailid { get; set; }
+        public string Password { get; set; }
         public string Gender { get; set; }
-        public byte[] Passwordhash { get; set; }
-        public byte[] Passwordsalt { get; set; }
+       
         public DateTime DOB { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }
