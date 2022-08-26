@@ -364,11 +364,13 @@ namespace MedfeesSolution.Models
 
             modelBuilder.Entity<Patient>(entity =>
             {
-                entity.ToTable("patient");
+                entity.HasKey(e => e.Patientid)
+                   .HasName("patient_pkey");
 
+                entity.ToTable("patient");
+                
                 entity.Property(e => e.Patientid)
-                    .ValueGeneratedNever()
-                    .HasColumnName("patientid");
+                    .HasColumnName("patientid").ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -409,30 +411,156 @@ namespace MedfeesSolution.Models
                     .IsRequired()
                     .HasMaxLength(300)
                     .HasColumnName("lastname");
-
-                entity.Property(e => e.Mobilenumber)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnName("mobilenumber");
-
-                entity.Property(e => e.Mothername)
-                    .HasMaxLength(300)
-                    .HasColumnName("mothername");
-
+                
                 entity.Property(e => e.Passwordhash)
-                    .IsRequired()
                     .HasColumnName("passwordhash");
 
                 entity.Property(e => e.Passwordsalt)
-                    .IsRequired()
                     .HasColumnName("passwordsalt");
+                
+                entity.Property(e => e.Mobilenumber)
+                   .IsRequired()
+                   .HasMaxLength(100)
+                   .HasColumnName("mobilenumber");
 
-                entity.Property(e => e.Pincode).HasColumnName("pincode");
+                entity.Property(e => e.DOB)
+                   .IsRequired()
+                   .HasMaxLength(100)
+                   .HasColumnName("dob");
+
+                entity.Property(e => e.FatherName)
+                   .HasMaxLength(100)
+                   .HasColumnName("fathername");
+
+                entity.Property(e => e.MotherName)
+                   .HasMaxLength(100)
+                   .HasColumnName("mothername");
+
+                entity.Property(e => e.BloodGroup)
+                   .HasMaxLength(100)
+                   .HasColumnName("bloodgroup");
+
+                entity.Property(e => e.AdhaarNo)
+                  .HasMaxLength(100)
+                  .HasColumnName("adhaarno");
+
+                 entity.Property(e => e.Address)
+                  .IsRequired()
+                  .HasMaxLength(100)
+                  .HasColumnName("address");
 
                 entity.Property(e => e.State)
-                    .IsRequired()
+                  .IsRequired()
+                  .HasMaxLength(100)
+                  .HasColumnName("state");
+
+                entity.Property(e => e.City)
+                  .IsRequired()
+                  .HasMaxLength(100)
+                  .HasColumnName("city");
+
+                entity.Property(e => e.PinCode)
+                  .IsRequired()
+                  .HasMaxLength(100)
+                  .HasColumnName("pincode");
+
+                entity.Property(e => e.Image)
+                  .IsRequired()
+                  .HasMaxLength(100)
+                  .HasColumnName("image");
+
+                entity.Property(e => e.EmergencyContactNo)
+                  .IsRequired()
+                  .HasMaxLength(100)
+                  .HasColumnName("emergencycontactno");
+
+                entity.Property(e => e.EmergencyContactName)
                     .HasMaxLength(100)
-                    .HasColumnName("state");
+                  .HasColumnName("emergencycontactname");
+
+                entity.Property(e => e.EmergencyContactRelation)
+                  .HasMaxLength(100)
+                  .HasColumnName("emergencycontactrelation");
+
+                entity.Property(e => e.NomineeName)
+                  .HasMaxLength(100)
+                  .HasColumnName("nomineename");
+
+                entity.Property(e => e.NomineeAadharNo)
+                  .HasMaxLength(100)
+                  .HasColumnName("nomineeaadharno");
+
+                entity.Property(e => e.NomineeContactNumber)
+                  .HasMaxLength(100)
+                  .HasColumnName("nomineecontactnumber");
+
+                entity.Property(e => e.NomineeRelation)
+                  .HasMaxLength(100)
+                  .HasColumnName("nomineerelation");
+
+                entity.Property(e => e.InsuredName)
+                  .HasMaxLength(100)
+                  .HasColumnName("insuredname");
+
+                entity.Property(e => e.PolicyNo)
+                  .HasMaxLength(100)
+                  .HasColumnName("policyno");
+
+                entity.Property(e => e.InsuredFromTo)
+                  .HasMaxLength(100)
+                  .HasColumnName("insuredfromto");
+
+                entity.Property(e => e.Insurer)
+                  .HasMaxLength(100)
+                  .HasColumnName("insurer");
+
+                entity.Property(e => e.InsuranceType)
+                  .HasMaxLength(100)
+                  .HasColumnName("insurancetype");
+
+                entity.Property(e => e.Status)
+                  .HasMaxLength(100)
+                  .HasColumnName("status");
+
+                entity.Property(e => e.UploadInsurance)
+                  .HasMaxLength(100)
+                  .HasColumnName("uploadinsurance");
+
+                entity.Property(e => e.Profession)
+                  .HasMaxLength(100)
+                  .HasColumnName("profession");
+
+                entity.Property(e => e.Education)
+                  .HasMaxLength(100)
+                  .HasColumnName("education");
+
+                entity.Property(e => e.MaritalStatus)
+                  .HasMaxLength(100)
+                  .HasColumnName("maritalstatus");
+
+                entity.Property(e => e.DriverLicenseNo)
+                  .HasMaxLength(100)
+                  .HasColumnName("driverlicenseno");
+
+                entity.Property(e => e.PassportNo)
+                  .HasMaxLength(100)
+                  .HasColumnName("pssportno");
+
+                entity.Property(e => e.PanNo )
+                  .HasMaxLength(100)
+                  .HasColumnName("panno");
+
+                entity.Property(e => e.EmployerName)
+                  .HasMaxLength(100)
+                  .HasColumnName("employername");
+
+                entity.Property(e => e.EmployeeID)
+                  .HasMaxLength(100)
+                  .HasColumnName("employeeid");
+
+                entity.Property(e => e.UploadIdentifiaction )
+                  .HasMaxLength(100)
+                  .HasColumnName("uploadidentifiaction");
             });
 
             modelBuilder.Entity<Privilege>(entity =>

@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using MedfeesSolution.Dtos.Patient;
 using MedfeesSolution.Models;
 using MedfeesSolution.Models.DTO;
-using AutoMapper;
+
 namespace MedfeesSolution.MappingConfigurations
 {
     public class MapperConfig : Profile
     {
         public MapperConfig()
         {
-            CreateMap<CreateEditUserDTO, User>();
-            CreateMap<CreateStaff, staff>();
-            CreateMap<CreateDoctor, Doctor>();
-
+             CreateMap<CreateEditUserDTO, User>();
+             CreateMap<Models.Patient, AddPatinetRequestDto>();
+             CreateMap<CreateStaff, staff>();
+             CreateMap<CreateDoctor, Doctor>();
         }
     }
 }
