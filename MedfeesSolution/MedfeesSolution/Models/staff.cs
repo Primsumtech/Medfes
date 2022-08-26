@@ -6,27 +6,35 @@ namespace MedfeesSolution.Models
     public partial class staff
     {
         public int Staffid { get; set; }
-        public string? Firstname { get; set; }
-        public string? Midlename { get; set; }
-        public string? Lastname { get; set; }
-        public string? Designation { get; set; }
-        public string? Hospitallocation { get; set; }
-        public int? Locationid { get; set; }
-        public int? Roleid { get; set; }
         public int? Hospitaltenantid { get; set; }
-        public string? Phonenumber { get; set; }
-        public string? Address { get; set; }
-        public string? Address1 { get; set; }
-        public string? City { get; set; }
-        public string? States { get; set; }
-        public string? Country { get; set; }
-        public string? Countrycode { get; set; }
+        public string Staffuniqueid { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Mobilenumeber { get; set; }
+        public string Education { get; set; }
+        public string Emailid { get; set; }
+        public byte[] Passwordhash { get; set; }
+        public byte[] Passwordsalt { get; set; }
+        public string Gender { get; set; }
+        public string Licenseno { get; set; }
+        public DateTime? Licenseexpirydate { get; set; }
+        public int? Emergencycontactno { get; set; }
+        public int? Aadharno { get; set; }
+        public string Pancardno { get; set; }
+        public int? City { get; set; }
+        public int? State { get; set; }
+        public int? Pincode { get; set; }
+        public int? Country { get; set; }
+        public DateTime? Joiningdate { get; set; }
+        public int? Roleid { get; set; }
+        public bool? Isactive { get; set; }
+        public byte[] Uploadimage { get; set; }
         public int? Createdby { get; set; }
         public DateTime? Createdon { get; set; }
         public int? Modifiedby { get; set; }
         public DateTime? Modifiedon { get; set; }
 
-        public virtual Hospitaltenant? Hospitaltenant { get; set; }
-        public virtual Role? Role { get; set; }
+        public virtual Hospitaltenant Hospitaltenant { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

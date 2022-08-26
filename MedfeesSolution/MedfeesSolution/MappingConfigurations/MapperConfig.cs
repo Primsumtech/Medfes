@@ -9,8 +9,10 @@ namespace MedfeesSolution.MappingConfigurations
     {
         public MapperConfig()
         {
-            CreateMap<CreateEditUserDTO, User>();
-            CreateMap<Models.Patient, AddPatinetRequestDto>();
+             CreateMap<CreateEditUserDTO, User>();
+             CreateMap<Models.Patient, AddPatinetRequestDto>();
+             CreateMap<CreateStaff, staff>();
+             CreateMap<CreateDoctor, Doctor>();
         }
     }
 }

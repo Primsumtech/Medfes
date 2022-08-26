@@ -17,6 +17,7 @@ namespace MedfeesSolution.Models
         public string Gender { get; set; }
         public byte[] Passwordhash { get; set; }
         public byte[] Passwordsalt { get; set; }
+
         public DateTime DOB { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }
