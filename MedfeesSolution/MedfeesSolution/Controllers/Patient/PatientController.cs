@@ -28,5 +28,26 @@ namespace MedfeesSolution.Controllers.Patient
             Models.Patient result = await _patientBP.AddPatient(parameters);
             return Ok(result);
         }
+
+        [HttpGet("get")]
+        public async Task<IActionResult> GetPatients()
+        {
+            
+            List<Models.Patient> result = await _patientBP.GetPatients();
+            return Ok(result);
+        }
+
+        [HttpGet("getbyid")]
+        public async Task<IActionResult> GetPatientById([FromQuery] BasePatient parameters)
+        {
+           Models.Patient result = await _patientBP.GetPatientById(parameters.PatientId);
+            return Ok(result);
+        }
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeletePatientById([FromQuery] BasePatient parameters)
+        {
+             await _patientBP.DeletePatientById(parameters.PatientId);
+            return Ok();
+        }
     }
 }

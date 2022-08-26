@@ -44,6 +44,32 @@ namespace MedfeesSolution.BusinessProcess.Patient
                 patient.PinCode = parameters.PinCode;
                 patient.Image = parameters.Image;
 
+                patient.EmergencyContactNo = parameters.EmergencyContactNo;
+                patient.EmergencyContactName = parameters.EmergencyContactName;
+                patient.EmergencyContactRelation = parameters.EmergencyContactRelation;
+                patient.NomineeName = parameters.NomineeName;
+                patient.NomineeAadharNo = parameters.NomineeAadharNo;
+                patient.NomineeContactNumber = parameters.NomineeContactNumber;
+                patient.NomineeRelation = parameters.NomineeRelation;
+
+                patient.InsuredName = parameters.InsuredName;
+                patient.PolicyNo = parameters.PolicyNo;
+                patient.InsuredFromTo = parameters.InsuredFromTo;
+                patient.Insurer = parameters.Insurer;
+                patient.InsuranceType = parameters.InsuranceType;
+                patient.Status = parameters.Status;
+                patient.UploadInsurance = parameters.UploadInsurance;
+
+                patient.Profession = parameters.Profession;
+                patient.Education = parameters.Education;
+                patient.MaritalStatus = parameters.MaritalStatus;
+                patient.DriverLicenseNo = parameters.DriverLicenseNo;
+                patient.PassportNo = parameters.PassportNo;
+                patient.PanNo = parameters.PanNo;
+                patient.EmployerName = parameters.EmployerName;
+                patient.EmployeeID = parameters.EmployeeID;
+                patient.UploadIdentifiaction = parameters.UploadIdentifiaction;
+
                 result = await _patientRepository.AddPatient(patient);
 
                 return result ?? new Models.Patient();
@@ -54,6 +80,31 @@ namespace MedfeesSolution.BusinessProcess.Patient
 
                 throw;
             }
+        }
+
+        public async Task<List<Models.Patient>> GetPatients()
+        {
+            return await _patientRepository.GetPatients();
+        }
+
+        public async Task<Models.Patient> GetPatientById(string patientid)
+        {
+            if (string.IsNullOrEmpty(patientid))
+            {
+                throw new Exception($"Invalid patent id: {patientid}");
+            }
+
+            return await _patientRepository.GetPatientById(patientid);
+        }
+
+        public async Task DeletePatientById(string patientid)
+        {
+            if (string.IsNullOrEmpty(patientid))
+            {
+                throw new Exception($"Invalid patent id: {patientid}");
+            }
+
+            await _patientRepository.DeletePatientById(patientid);
         }
     }
 }
