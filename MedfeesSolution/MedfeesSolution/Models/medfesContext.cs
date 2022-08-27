@@ -368,33 +368,13 @@ namespace MedfeesSolution.Models
                    .HasName("patient_pkey");
 
                 entity.ToTable("patient");
-                
+
                 entity.Property(e => e.Patientid)
                     .HasColumnName("patientid").ValueGeneratedOnAdd();
-
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnName("address");
-
-                entity.Property(e => e.AdhaarNo).HasColumnName("adhaar no");
-
-                entity.Property(e => e.Bloodgroup).HasColumnName("bloodgroup");
-
-                entity.Property(e => e.City)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnName("city");
-
-                entity.Property(e => e.Dob).HasColumnName("dob");
 
                 entity.Property(e => e.Emailid)
                     .HasMaxLength(100)
                     .HasColumnName("emailid");
-
-                entity.Property(e => e.Fathername)
-                    .HasMaxLength(300)
-                    .HasColumnName("fathername");
 
                 entity.Property(e => e.Firstname)
                     .IsRequired()
@@ -405,19 +385,17 @@ namespace MedfeesSolution.Models
                     .IsRequired()
                     .HasColumnName("gender");
 
-                entity.Property(e => e.Image).HasColumnName("image");
-
                 entity.Property(e => e.Lastname)
                     .IsRequired()
                     .HasMaxLength(300)
                     .HasColumnName("lastname");
-                
+
                 entity.Property(e => e.Passwordhash)
                     .HasColumnName("passwordhash");
 
                 entity.Property(e => e.Passwordsalt)
                     .HasColumnName("passwordsalt");
-                
+
                 entity.Property(e => e.Mobilenumber)
                    .IsRequired()
                    .HasMaxLength(100)
@@ -444,7 +422,7 @@ namespace MedfeesSolution.Models
                   .HasMaxLength(100)
                   .HasColumnName("adhaarno");
 
-                 entity.Property(e => e.Address)
+                entity.Property(e => e.Address)
                   .IsRequired()
                   .HasMaxLength(100)
                   .HasColumnName("address");
@@ -546,7 +524,7 @@ namespace MedfeesSolution.Models
                   .HasMaxLength(100)
                   .HasColumnName("pssportno");
 
-                entity.Property(e => e.PanNo )
+                entity.Property(e => e.PanNo)
                   .HasMaxLength(100)
                   .HasColumnName("panno");
 
@@ -558,9 +536,11 @@ namespace MedfeesSolution.Models
                   .HasMaxLength(100)
                   .HasColumnName("employeeid");
 
-                entity.Property(e => e.UploadIdentifiaction )
+                entity.Property(e => e.UploadIdentifiaction)
                   .HasMaxLength(100)
                   .HasColumnName("uploadidentifiaction");
+
+
             });
 
             modelBuilder.Entity<Privilege>(entity =>

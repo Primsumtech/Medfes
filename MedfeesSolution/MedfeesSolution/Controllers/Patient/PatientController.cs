@@ -19,7 +19,7 @@ namespace MedfeesSolution.Controllers.Patient
 
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddPatient([FromBody] AddPatinetRequestDto parameters)
+        public async Task<IActionResult> AddPatient([FromBody] AddEditPatinetRequestDto parameters)
         {
             if (parameters == null)
             {
@@ -40,9 +40,26 @@ namespace MedfeesSolution.Controllers.Patient
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetPatientById([FromQuery] BasePatient parameters)
         {
-           Models.Patient result = await _patientBP.GetPatientById(parameters.PatientId);
+            PatinetResultDto result = await _patientBP.GetPatientById(parameters.PatientId);
             return Ok(result);
         }
+
+        [HttpPut("update")]
+
+        public async Task<IActionResult> UpdatePatient([FromBody] AddEditPatinetRequestDto parameters)
+        {
+
+            if (parameters == null)
+            {
+                return new BadRequestResult();
+            }
+
+            PatinetResultDto result = await _patientBP.UpdatePatient(parameters);
+
+            return Ok(result);
+
+        }
+
         [HttpDelete("delete")]
         public async Task<IActionResult> DeletePatientById([FromQuery] BasePatient parameters)
         {
