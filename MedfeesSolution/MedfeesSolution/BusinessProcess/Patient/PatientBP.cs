@@ -16,7 +16,7 @@ namespace MedfeesSolution.BusinessProcess.Patient
             _patientRepository = patientRepository;
         }
 
-        public async Task<Models.Patient> AddPatient(AddPatinetRequestDto parameters)
+        public async Task<Models.Patient> AddPatient(AddEditPatinetRequestDto parameters)
         {
             Models.Patient result = null;
             try
@@ -87,15 +87,26 @@ namespace MedfeesSolution.BusinessProcess.Patient
             return await _patientRepository.GetPatients();
         }
 
-        public async Task<Models.Patient> GetPatientById(string patientid)
+        public async Task<PatinetResultDto> GetPatientById(string patientid)
         {
             if (string.IsNullOrEmpty(patientid))
             {
                 throw new Exception($"Invalid patent id: {patientid}");
             }
 
-            return await _patientRepository.GetPatientById(patientid);
-        }
+          //  return await _patientRepository.GetPatientById(patientid);
+
+            Models.Patient patient = await _patientRepository.GetPatientById(patientid);
+
+            if (patient == null)
+            {
+                throw new Exception($"Invalid patent id: {patientid}");
+            }
+            PatinetResultDto result = null;
+             result = _mapper.Map<PatinetResultDto>(patient);
+
+            return result ?? new PatinetResultDto();
+        } 
 
         public async Task DeletePatientById(string patientid)
         {
@@ -105,6 +116,30 @@ namespace MedfeesSolution.BusinessProcess.Patient
             }
 
             await _patientRepository.DeletePatientById(patientid);
+        }
+
+        public async Task<PatinetResultDto> UpdatePatient(AddEditPatinetRequestDto parameters)
+        {
+            PatinetResultDto result = null;
+
+            if (string.IsNullOrWhiteSpace(parameters.PatientId))
+            {
+                throw new Exception($"Invalid patent id: {parameters.PatientId}");
+            }
+
+            Models.Patient patient =  await _patientRepository.GetPatientById(parameters.PatientId);
+
+            if (patient == null)
+            {
+                throw new Exception($"Invalid patent id: {parameters.PatientId}");
+            }
+
+            patient = await _patientRepository.UpdatePatient(parameters);
+
+            result = _mapper.Map<PatinetResultDto>(patient);
+
+            return result ?? new PatinetResultDto();
+
         }
     }
 }

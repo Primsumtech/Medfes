@@ -4,9 +4,14 @@ namespace MedfeesSolution.BusinessProcess.Patient
 {
     public interface IPatientBP
     {
-        Task<Models.Patient> AddPatient(AddPatinetRequestDto parameters);
+        Task<Models.Patient> AddPatient(AddEditPatinetRequestDto parameters);
+
         Task<List<Models.Patient>> GetPatients();
-        Task<Models.Patient> GetPatientById(string patientid);
+
+        Task<PatinetResultDto> GetPatientById(string patientid);
+
+        Task<PatinetResultDto> UpdatePatient(AddEditPatinetRequestDto parameters);
+
         Task DeletePatientById(string patientid);
     }
 }

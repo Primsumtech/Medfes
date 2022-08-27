@@ -10,6 +10,8 @@ namespace MedfeesSolution.DataAccess.Patient
 
         Task<Models.Patient> GetPatientById(string patientid);
 
+        Task<Models.Patient> UpdatePatient(AddEditPatinetRequestDto parameters);
+
         Task DeletePatientById(string patientid);
     }
 }
